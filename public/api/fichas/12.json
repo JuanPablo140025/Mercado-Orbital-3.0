@@ -1,0 +1,8 @@
+{
+    "id": 12,
+    "nombre": "Panel solar plegable",
+    "fabricante": "Laboratorios Nébula",
+    "descripcion": "Tres paneles que se despliegan al salir de la sombra de un planeta y cargan la batería de la nave. Se pliegan solos cuando hay tormenta de partículas.",
+    "compatibilidad": ["Carguero Tortuga", "Lanzadera Colibrí"],
+    "stock": 6
+}

@@ -1,28 +1,30 @@
 import { useState, useEffect } from "react";
-import Encabezado from "./components/Encabezado.jsx";
-import Catalogo from "./components/Catalogo.jsx";
+import { Routes, Route } from "react-router";
+import PaginaInicio from "./pages/PaginaInicio.jsx";
+import PaginaCatalogo from "./pages/PaginaCatalogo.jsx";
+import PaginaTaller from "./pages/PaginaTaller.jsx";
+import PaginaNoEncontrada from "./pages/PaginaNoEncontrada.jsx";
+import PaginaHangar from "./pages/PaginaHangar.jsx";
+import PaginaReparaciones from "./pages/PaginaReparaciones.jsx";
+import PaginaHangarNoEncontrada from "./pages/PaginaHangarNoEncontrada.jsx";
+import LayoutTienda from "./components/LayoutTienda.jsx";
+import LayoutHangar from "./components/LayoutHangar.jsx";
 import PanelCarrito from "./components/PanelCarrito.jsx";
 import Aviso from "./components/Aviso.jsx";
-import OfertaRelampago from "./components/OfertaRelampago.jsx";
 import FichaProducto from "./components/FichaProducto.jsx";
 
 const URL_CATALOGO = "/api/productos.json";
 
 function App() {
-    // Estado de la tienda
     const [carrito, setCarrito] = useState([]);
     const [aviso, setAviso] = useState("");
     const [carritoAbierto, setCarritoAbierto] = useState(false);
 
-    // Estado elevado para la oferta relámpago (Ticket 1 + Extra)
-    const [segundosOferta, setSegundosOferta] = useState(60);
-
-    // ===== Ticket 1 · El catálogo llega del servidor (Misión 39) =====
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState("");
 
-    // Estado para la ficha técnica (Home Challenge)
+    const [url, setUrl] = useState(URL_CATALOGO);
     const [fichaId, setFichaId] = useState(null);
 
     async function cargarCatalogo() {
@@ -30,8 +32,7 @@ function App() {
         setError("");
 
         try {
-            const response = await fetch(URL_CATALOGO);
-
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`El servidor respondió ${response.status}`);
             }
@@ -47,15 +48,8 @@ function App() {
 
     useEffect(() => {
         cargarCatalogo();
-    }, []);
+    }, [url]);
 
-    // Calculamos el catálogo con el descuento activo si quedan segundos (Extra)
-    const ofertaActiva = segundosOferta > 0;
-    const catalogoActual = productos.map((prod) =>
-        prod.id === 7 && ofertaActiva ? { ...prod, precio: 450 } : prod
-    );
-
-    // Valores calculados a partir del carrito
     const totalUnidades = carrito.reduce((suma, item) => suma + item.cantidad, 0);
     const totalPrecio = carrito.reduce((suma, item) => suma + item.precio * item.cantidad, 0);
 
@@ -64,9 +58,7 @@ function App() {
 
         if (yaEsta) {
             setCarrito(carrito.map((item) =>
-                item.id === producto.id
-                    ? { ...item, cantidad: item.cantidad + 1, precio: producto.precio }
-                    : item
+                item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
             ));
         } else {
             setCarrito([...carrito, { ...producto, cantidad: 1 }]);
@@ -79,12 +71,10 @@ function App() {
         setCarrito(carrito.filter((item) => item.id !== id));
     }
 
-    // Ticket Clase 1 · La pestaña cuenta el carrito
     useEffect(() => {
         document.title = `(${totalUnidades}) Mercado Orbital`;
     }, [totalUnidades]);
 
-    // Ticket Clase 2 · El aviso se borra solo
     useEffect(() => {
         if (aviso === "") return;
 
@@ -95,7 +85,6 @@ function App() {
         return () => clearTimeout(id);
     }, [aviso]);
 
-    // Ticket Clase 3 · Escape cierra el carrito o la ficha
     useEffect(() => {
         function manejarTecla(e) {
             if (e.key === "Escape") {
@@ -109,7 +98,6 @@ function App() {
         return () => window.removeEventListener("keydown", manejarTecla);
     }, []);
 
-    // Extra L1 · La tecla C abre y cierra el carrito
     useEffect(() => {
         function alternarConC(e) {
             if (e.key === "c" || e.key === "C") {
@@ -123,35 +111,47 @@ function App() {
     }, [carritoAbierto]);
 
     return (
-        <div className="app">
-            <Encabezado
-                totalUnidades={totalUnidades}
-                onAbrirCarrito={() => setCarritoAbierto(true)}
-            />
+        <>
+            <Routes>
+                <Route element={<LayoutTienda totalUnidades={totalUnidades} onAbrirCarrito={() => setCarritoAbierto(true)} />}>
+                    <Route
+                        index
+                        element={
+                            <PaginaInicio
+                                productos={productos}
+                                cargando={cargando}
+                                error={error}
+                                onReintentar={cargarCatalogo}
+                                onAgregar={agregarAlCarrito}
+                                onVerFicha={setFichaId}
+                            />
+                        }
+                    />
+                    <Route
+                        path="catalogo"
+                        element={
+                            <PaginaCatalogo
+                                productos={productos}
+                                cargando={cargando}
+                                error={error}
+                                onReintentar={cargarCatalogo}
+                                onAgregar={agregarAlCarrito}
+                                onVerFicha={setFichaId}
+                                url={url}
+                                onCambiarUrl={setUrl}
+                            />
+                        }
+                    />
+                    <Route path="taller" element={<PaginaTaller />} />
+                    <Route path="*" element={<PaginaNoEncontrada />} />
+                </Route>
 
-            <section className="bienvenida">
-                <img src="/img/nova-tienda.png" alt="Nova en el mostrador del Mercado Orbital" />
-                <div>
-                    <h2>Bienvenido al puesto de Nova</h2>
-                    <p>Repuestos revisados uno por uno en el hangar. Si algo falla, Kuma lo arregla.</p>
-                </div>
-            </section>
-
-            {/* Ticket 1 · Oferta relámpago entre bienvenida y catálogo */}
-            <OfertaRelampago
-                segundos={segundosOferta}
-                setSegundos={setSegundosOferta}
-            />
-
-            {/* Catálogo con manejo de estados y botón de ficha */}
-            <Catalogo
-                productos={catalogoActual}
-                cargando={cargando}
-                error={error}
-                onReintentar={cargarCatalogo}
-                onAgregar={agregarAlCarrito}
-                onVerFicha={(id) => setFichaId(id)}
-            />
+                <Route path="hangar" element={<LayoutHangar />}>
+                    <Route index element={<PaginaHangar />} />
+                    <Route path="reparaciones" element={<PaginaReparaciones />} />
+                    <Route path="*" element={<PaginaHangarNoEncontrada />} />
+                </Route>
+            </Routes>
 
             <Aviso mensaje={aviso} />
 
@@ -169,10 +169,12 @@ function App() {
                     id={fichaId}
                     onCerrar={() => setFichaId(null)}
                     onAgregar={agregarAlCarrito}
+                    producto={productos.find((p) => p.id === fichaId)}
                 />
             )}
-        </div>
+        </>
     );
 }
 
 export default App;
+

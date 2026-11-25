@@ -1,0 +1,8 @@
+{
+    "id": 9,
+    "nombre": "Cañón de pulsos",
+    "fabricante": "Astilleros Umbral",
+    "descripcion": "Cañón ligero que dispara pulsos de energía cian. Se monta en el casco y se recarga solo con la batería de la nave. Los cadetes lo usan para despejar escombros del muelle.",
+    "compatibilidad": ["Caza Lince", "Explorador Mirlo"],
+    "stock": 5
+}

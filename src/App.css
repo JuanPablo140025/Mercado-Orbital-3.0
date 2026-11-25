@@ -1,4 +1,4 @@
-/* Estilos del Mercado Orbital. Ya vienen listos: no hace falta tocarlos. */
+/* Estilos del Mercado Orbital */
 
 * {
     box-sizing: border-box;
@@ -85,8 +85,8 @@ body {
 }
 
 .bienvenida img {
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
     border-radius: 12px;
     border: 2px solid #1f4d6b;
 }
@@ -249,7 +249,7 @@ body {
     color: #ffd166;
 }
 
-/* Tarea: oferta relámpago y reloj de la estación (ya listos para usar) */
+/* Oferta relámpago y reloj */
 .oferta {
     display: flex;
     justify-content: space-between;
@@ -280,3 +280,469 @@ body {
     font-variant-numeric: tabular-nums;
     color: #9fe6ff;
 }
+
+/* Estados del catálogo */
+.estado-catalogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 260px;
+    justify-content: center;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid #1f4d6b;
+    border-radius: 14px;
+    background: #0c1a2b;
+}
+
+.estado-titulo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #61dafb;
+}
+
+.estado-detalle {
+    color: #8fb3c9;
+    max-width: 420px;
+}
+
+.cargando .anillo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 4px solid #133a57;
+    border-top-color: #61dafb;
+    animation: girar 0.9s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.error-catalogo {
+    border-color: #ff6b6b;
+}
+
+.error-catalogo .icono-estado,
+.error-catalogo .estado-titulo {
+    color: #ff6b6b;
+}
+
+.error-catalogo .estado-detalle {
+    font-family: Consolas, "Courier New", monospace;
+    color: #ffb3b3;
+}
+
+.boton-reintentar {
+    margin-top: 6px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    background: #61dafb;
+    color: #06121f;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.boton-reintentar:hover {
+    background: #9fe6ff;
+}
+
+.catalogo-vacio img {
+    width: 140px;
+    image-rendering: pixelated;
+}
+
+.panel-pruebas {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 14px;
+}
+
+.panel-pruebas label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #8fb3c9;
+}
+
+.panel-pruebas select {
+    padding: 6px 10px;
+    border: 1px solid #1f4d6b;
+    border-radius: 8px;
+    background: #0c1a2b;
+    color: #e6f6ff;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* Ficha técnica */
+.boton-ficha {
+    padding: 8px;
+    border: 1px solid #8fb3c9;
+    border-radius: 10px;
+    background: transparent;
+    color: #8fb3c9;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.boton-ficha:hover {
+    border-color: #e6f6ff;
+    color: #e6f6ff;
+}
+
+.ficha {
+    width: min(440px, 100%);
+    height: auto;
+    max-height: 90vh;
+    overflow: auto;
+    margin: auto;
+    border: 1px solid #1f4d6b;
+    border-radius: 14px;
+}
+
+.ficha-cabeza {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.ficha-cabeza h2 {
+    color: #61dafb;
+}
+
+.ficha-dato {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #091422;
+}
+
+.ficha-dato strong {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #8fb3c9;
+}
+
+.ficha-dato ul {
+    padding-left: 18px;
+}
+
+.ficha-estado {
+    text-align: center;
+    color: #8fb3c9;
+    padding: 20px 0;
+}
+
+.agotado {
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #3a1414;
+    color: #ff6b6b;
+    font-weight: 700;
+}
+
+.ficha .boton-agregar:disabled {
+    border-color: #5b6b78;
+    color: #5b6b78;
+    background: transparent;
+    cursor: not-allowed;
+}
+
+/* Menú, páginas y 404 */
+.navegacion {
+    display: flex;
+    gap: 8px;
+}
+
+.navegacion a {
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #8fb3c9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navegacion a:hover {
+    color: #e6f6ff;
+}
+
+.navegacion a.active {
+    border-color: #1f4d6b;
+    background: #133a57;
+    color: #61dafb;
+}
+
+.titulo-pagina {
+    margin: 20px 0 14px;
+    color: #61dafb;
+}
+
+.enlace-catalogo {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border: 1px solid #61dafb;
+    border-radius: 10px;
+    color: #61dafb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.enlace-catalogo:hover {
+    background: #61dafb;
+    color: #06121f;
+}
+
+.no-encontrada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 40px 24px;
+    text-align: center;
+    border: 1px solid #ff6b6b;
+    border-radius: 14px;
+    background: #0c1a2b;
+}
+
+.no-encontrada h2 {
+    color: #ff6b6b;
+}
+
+.no-encontrada p {
+    color: #8fb3c9;
+}
+
+.no-encontrada a {
+    margin-top: 6px;
+    padding: 8px 18px;
+    border-radius: 10px;
+    background: #61dafb;
+    color: #06121f;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Página del taller */
+.taller-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 20px 0;
+    padding: 16px 24px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #0f2a44, #0b1828);
+}
+
+.taller-cabecera img {
+    flex-shrink: 0;
+}
+
+.taller-cabecera h2 {
+    margin-bottom: 8px;
+    color: #61dafb;
+}
+
+.taller-intro {
+    max-width: 640px;
+    color: #8fb3c9;
+    line-height: 1.5;
+}
+
+.servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.servicios img {
+    display: block;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.servicios article {
+    padding: 16px;
+    border: 1px solid #1f4d6b;
+    border-radius: 14px;
+    background: #0c1a2b;
+}
+
+.servicios h3 {
+    margin-bottom: 6px;
+    color: #9fe6ff;
+}
+
+.servicios p {
+    color: #8fb3c9;
+    line-height: 1.45;
+}
+
+/* Extra: enlace Seguir comprando */
+.seguir-comprando {
+    padding: 10px;
+    border: 1px solid #61dafb;
+    border-radius: 10px;
+    color: #61dafb;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.seguir-comprando:hover {
+    background: #61dafb;
+    color: #06121f;
+}
+
+/* Hangar */
+.hangar {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.menu-hangar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-self: start;
+    padding: 16px;
+    border: 1px solid #1f4d6b;
+    border-radius: 14px;
+    background: #0c1a2b;
+}
+
+.menu-hangar h2 {
+    margin-bottom: 6px;
+    color: #61dafb;
+    font-size: 1.1rem;
+}
+
+.menu-hangar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu-hangar a {
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: #8fb3c9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu-hangar a:hover {
+    color: #e6f6ff;
+}
+
+.menu-hangar a.active {
+    border-color: #1f4d6b;
+    background: #133a57;
+    color: #61dafb;
+}
+
+.menu-hangar .volver-tienda {
+    margin-bottom: 8px;
+    border-color: #8fb3c9;
+    color: #e6f6ff;
+    text-align: center;
+}
+
+.contenido-hangar {
+    padding: 20px;
+    border: 1px solid #1f4d6b;
+    border-radius: 14px;
+    background: #0c1a2b;
+}
+
+.contenido-hangar h2 {
+    margin-bottom: 10px;
+    color: #61dafb;
+}
+
+.contenido-hangar p {
+    color: #8fb3c9;
+    line-height: 1.5;
+}
+
+.lista-reparaciones {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.reparacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #091422;
+}
+
+.reparacion div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.reparacion strong {
+    color: #e6f6ff;
+}
+
+.reparacion span {
+    color: #8fb3c9;
+}
+
+.reparacion .reparacion-estado {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #133a57;
+    color: #9fe6ff;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.banner-hangar {
+    display: block;
+    width: 100%;
+    height: 170px;
+    margin-bottom: 14px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.reparacion-nave {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}
+
+.kuma-perdido {
+    display: block;
+    width: 170px;
+    margin: 14px 0;
+}
+

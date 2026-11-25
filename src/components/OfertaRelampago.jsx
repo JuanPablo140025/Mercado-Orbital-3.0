@@ -1,29 +1,27 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-function OfertaRelampago({ segundos, setSegundos }) {
+function OfertaRelampago({ segundosIniciales = 30 }) {
+    const [segundos, setSegundos] = useState(segundosIniciales);
+
     useEffect(() => {
-        if (segundos === 0) return;
+        if (segundos <= 0) return;
 
-        const id = setTimeout(() => {
-            setSegundos(segundos - 1);
+        const id = setInterval(() => {
+            setSegundos((prev) => (prev > 0 ? prev - 1 : 0));
         }, 1000);
 
-        return () => clearTimeout(id);
-    }, [segundos, setSegundos]);
+        return () => clearInterval(id);
+    }, [segundos]);
 
-    if (segundos === 0) {
-        return (
-            <section className="oferta oferta-terminada">
-                La oferta del Propulsor turbo terminó.
-            </section>
-        );
+    if (segundos <= 0) {
+        return null;
     }
 
     return (
-        <section className="oferta">
+        <div className="oferta">
             <span>Oferta relámpago: Propulsor turbo a 450 cr</span>
-            <span className="cuenta">Termina en {segundos} s</span>
-        </section>
+            <span className="cuenta">Termina en {segundos}s</span>
+        </div>
     );
 }
 

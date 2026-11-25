@@ -1,0 +1,8 @@
+{
+    "id": 10,
+    "nombre": "Giroscopio estabilizador",
+    "fabricante": "Laboratorios Nébula",
+    "descripcion": "Tres anillos que giran alrededor de un núcleo de energía y mantienen la nave derecha aunque el piloto maniobre bruscamente. Se instala debajo de la cabina.",
+    "compatibilidad": ["Explorador Mirlo", "Lanzadera Colibrí", "Caza Lince"],
+    "stock": 9
+}

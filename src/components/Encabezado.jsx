@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import RelojEstacion from "./RelojEstacion.jsx";
 
 function Encabezado({ totalUnidades, onAbrirCarrito }) {
@@ -12,6 +13,13 @@ function Encabezado({ totalUnidades, onAbrirCarrito }) {
                 </div>
             </div>
 
+            <nav className="navegacion">
+                <NavLink to="/">Inicio</NavLink>
+                <NavLink to="/catalogo">Catálogo</NavLink>
+                <NavLink to="/taller">Taller</NavLink>
+                <NavLink to="/hangar">Hangar</NavLink>
+            </nav>
+
             <button className="boton-carrito" onClick={onAbrirCarrito}>
                 Carrito <span className="contador">{totalUnidades}</span>
             </button>
@@ -20,3 +28,4 @@ function Encabezado({ totalUnidades, onAbrirCarrito }) {
 }
 
 export default Encabezado;
+

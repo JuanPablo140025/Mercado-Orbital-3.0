@@ -6,5 +6,9 @@
     { "id": 5, "nombre": "Kit de reparación", "categoria": "Equipo", "precio": 220, "imagen": "/img/kit-reparacion.png" },
     { "id": 6, "nombre": "Radar de largo alcance", "categoria": "Navegación", "precio": 760, "imagen": "/img/radar-largo-alcance.png" },
     { "id": 7, "nombre": "Propulsor turbo", "categoria": "Propulsión", "precio": 640, "imagen": "/img/propulsor-turbo.png" },
-    { "id": 8, "nombre": "Cristal Bit", "categoria": "Energía", "precio": 1500, "imagen": "/img/cristal-bit.png" }
+    { "id": 8, "nombre": "Cristal Bit", "categoria": "Energía", "precio": 1500, "imagen": "/img/cristal-bit.png" },
+    { "id": 9, "nombre": "Cañón de pulsos", "categoria": "Armamento", "precio": 890, "imagen": "/img/canon-pulsos.webp" },
+    { "id": 10, "nombre": "Giroscopio estabilizador", "categoria": "Navegación", "precio": 540, "imagen": "/img/giroscopio.webp" },
+    { "id": 11, "nombre": "Tanque de combustible", "categoria": "Propulsión", "precio": 410, "imagen": "/img/tanque-combustible.webp" },
+    { "id": 12, "nombre": "Panel solar plegable", "categoria": "Energía", "precio": 620, "imagen": "/img/panel-solar.webp" }
 ]

@@ -1,0 +1,8 @@
+{
+    "id": 11,
+    "nombre": "Tanque de combustible",
+    "fabricante": "Forja Orbital Vega",
+    "descripcion": "Tanque presurizado con visor para ver el nivel a simple vista. Alimenta los motores en trayectos largos y se rellena en cualquier muelle de la estación.",
+    "compatibilidad": ["Carguero Tortuga", "Explorador Mirlo", "Lanzadera Colibrí"],
+    "stock": 14
+}

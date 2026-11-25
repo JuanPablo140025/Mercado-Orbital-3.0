@@ -1,30 +1,34 @@
-// Ya viene listo. Panel lateral con lo que hay en el carrito.
+import { Link } from "react-router";
+
 function PanelCarrito({ items, total, onCerrar, onQuitar }) {
     return (
         <div className="fondo-panel" onClick={onCerrar}>
-            {/* stopPropagation evita que un clic dentro del panel lo cierre */}
             <aside className="panel" onClick={(e) => e.stopPropagation()}>
                 <div className="panel-cabeza">
-                    <h2>Tu carrito</h2>
-                    <button className="boton-cerrar" onClick={onCerrar}>Cerrar (Esc)</button>
+                    <h2>Carrito</h2>
+                    <button className="boton-cerrar" onClick={onCerrar}>Cerrar</button>
                 </div>
 
                 {items.length === 0 ? (
                     <div className="carrito-vacio">
-                        <img src="/img/nova-carrito-vacio.png" alt="Nova junto a una caja vacía" />
-                        <p>Todavía no hay repuestos aquí.</p>
+                        <img src="/img/nova-carrito-vacio.png" alt="Nova esperando pedidos" />
+                        <p>El carrito está vacío</p>
                     </div>
                 ) : (
                     <ul className="lista-carrito">
                         {items.map((item) => (
                             <li key={item.id}>
-                                <span>{item.nombre} x{item.cantidad}</span>
-                                <span>{item.precio * item.cantidad} cr</span>
+                                <span>{item.nombre} × {item.cantidad}</span>
+                                <strong>{item.precio * item.cantidad} cr</strong>
                                 <button onClick={() => onQuitar(item.id)}>Quitar</button>
                             </li>
                         ))}
                     </ul>
                 )}
+
+                <Link to="/catalogo" className="seguir-comprando" onClick={onCerrar}>
+                    Seguir comprando
+                </Link>
 
                 <p className="total">Total: {total} cr</p>
             </aside>
@@ -33,3 +37,4 @@ function PanelCarrito({ items, total, onCerrar, onQuitar }) {
 }
 
 export default PanelCarrito;
+
